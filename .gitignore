@@ -1,6 +1,6 @@
 .DS_Store
+datasets/
 notebooks/
-P01-Linear-Classifiers/
-P02-Logistic-Classifiers/
+P04-Logistic-Classifiers/
 P05-Decision-Trees/
 P06-Naive-Bayes/

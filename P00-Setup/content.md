@@ -37,3 +37,7 @@ In this course, we'll be utilizing many familiar Data Exploration and Analysis l
 - Seaborn (*sns*)
 
 When we talk about machine learning, we'll introduce a new and very powerful built-in Python module called *sklearn*, which allows us to do a variety of beginner, intermediate, and advanced tasks regarding supervised machine learning, particularly with classification.
+
+NOTE: These tutorials assume you have an introductory understanding of the meaning behind very basic machine learning terms, such as _supervised learning_, _classification_, and _data_. 
+
+Please ensure that you understand terms used throughout these tutorials and feel free to reference online literature at any point to better your understanding.

@@ -3,7 +3,7 @@ title: "k-Nearest Neighbors Classifiers"
 slug: kNN-classifier
 ---
 
-## Section 4: The *k-Nearest Neighbors* Algorithm
+## Section 3: The *k-Nearest Neighbors* Algorithm
 
 We've talked about how regression lines of best fit can be used to classify data, and we've talked about how that concept can be expanded to create advanced geometric constructs to linearly separate our data in a hyperdimensional manner.
 

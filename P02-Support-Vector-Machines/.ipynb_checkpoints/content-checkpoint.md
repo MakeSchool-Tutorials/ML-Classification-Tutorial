@@ -3,7 +3,7 @@ title: "Support Vector Classifiers"
 slug: svm-classifier
 ---
 
-## Section 3: Support Vector Machine Classifiers
+## Section 2: Support Vector Machine Classifiers
 
 Most of our time now has been spent with simple regression algorithms. 
 
