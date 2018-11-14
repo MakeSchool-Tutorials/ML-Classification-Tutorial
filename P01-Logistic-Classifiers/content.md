@@ -1,11 +1,11 @@
 ---
-title: "Linear Regression Classifiers"
-slug: lin-reg-classifier
+title: "Logistic Regression Classifiers"
+slug: log-reg-classifier
 ---
 
-## Section 1: The *Linear Regression* Classifier
+## Section 1: The *Logistic* Classification Function
 
-In our first tutorial, we'll be discussing one of the simplest classifier models in all of machine learning: the *linear regression* model. 
+In our first tutorial, we'll be discussing one of the simplest classification models in machine learning: the *logistic* classifier.
 
 Now, those of you with perhaps some prior machine learning experience may be wondering... why on Earth would a regression model be used for classification? 
 
@@ -15,9 +15,9 @@ As we should know, a regression model attempts to fit data as best it can to a s
 
 These regression models can be incredibly advanced and span the realms of multivariate engineering mathematics, but generally in programming we reference the simpler ones. 
 
-A linear regression model is where we attempt to fit our data to a single line on a graph. 
+A logistic model extends the logistic regression model into a **classifier**, meaning that now the logistic function can be used to classify continuous values into discretized categories.
 
-We can extrapolate a regression model to be able to classify our data simply by making the line of best fit our split (decision boundary).
+Another way to think about it is we can use a logistic classification function to fit a continuous range of values (from -*inf* to *inf*) to a decision range between 0 and 1, allowing us to apply a threshold value (let's assume it to be 0.5) and classify values within our range.
 
 ---
 
@@ -25,7 +25,7 @@ Let's get started by running our basic imports: one for our *dataset* and one fo
 
 ```
 from sklearn.datasets import load_iris
-from sklearn.linear_model import LinearRegression()
+from sklearn.linear_model import LogisticRegression
 ```
 
 In this example, we're going to use the Iris dataset - a classic dataset for machine learning classification. 
@@ -56,7 +56,7 @@ X.head()
 
 As we can see, we do indeed have our four main features: _sepal length (cm)_, _sepal width (cm)_, _petal length (cm)_, and _petal width (cm)_. 
 
-Each feature in our dataset contains continuous data, which is essential for appropraite regression calculation.
+Each feature in our dataset contains continuous data, which is essential for appropriate regression calculation.
 
 We can peek at our target vector as well, just to see if our classes are consistent with what we expect. 
 
@@ -91,12 +91,20 @@ However, we can do this by simply calling `.score()` on our machine learning mod
 
 Let's try this process out now by instantiating our model.
 
+Keep in mind, two important arguments we send as parameters to our model are the *solver* and the *multi_class* parameters. 
+
+The parameter passed for the *solver* case is called the **Limited-Memory BFGS**, which is a popular optimization algorithm useful in machine learning. 
+
+The parameter passed for the *multi_class* case is called **multinomial**, which tells the model that the logistic regression expects discretized cases that are over two classes. 
+
+In our case, we're predicting over three discrete classes, so that makes sense! 
+
 ```
-linreg = LinearRegression()
-linreg.fit(X_train, y_train)
+logreg = LogisticRegression(random_state=0, solver="lbfgs", multi_class="multinomial")
+logreg.fit(X_train, y_train)
 ```
 
-Here, we've just *instantiated* our machine learning model (our **linear regression** model) by assigning an empty model to a variable.
+Here, we've just *instantiated* our machine learning model (our **logistic regression** model) by assigning an empty model to a variable.
 
 Then, we *fitted* the model to our training dataset. Here, it learns the approximate relationship between the X and y datasets. 
 
@@ -105,7 +113,7 @@ Through learning the relationship between the X-y training data, we're hoping th
 In our example, rather than sending it new data manually, we'll actually send the model our `X_test` data, since it hasn't seen it before. 
 
 ```
-y_pred = linreg.predict(X_test)
+y_pred = logreg.predict(X_test)
 ```
 
 Generally, we assign the name of the output array of a `.predict()` model command to be called `y_pred`, or the predicted y-values array.
@@ -118,12 +126,18 @@ If the shape of both the predicted y-values array and the true test y-values arr
 
 ---
 
+We can also use the `.predict_proba()` command to grab the relative classification probabilities in an array, rather than the assigned classes themselves.
+
+```
+logreg.predict_proba(X_test)
+```
+
 The next step is to simply determine the model's accuracy. 
 
 We can do this by calling `.score()` on our model and sending it our test data. 
 
 ```
-linreg.score(X_test, y_test)
+logreg.score(X_test, y_test)
 ```
 
 One common mistake many people make is to send `y_pred` rather than `X_test` as the first argument to the scoring method. 
@@ -138,4 +152,5 @@ In this case, since we have three explicit class labels, we technically have a 3
 
 So let's apply that to our obtained score. 
 
-**Did our linear classification score beat the relative baseline**? 
+**Did our logistic classification score beat the relative baseline**? 
+
